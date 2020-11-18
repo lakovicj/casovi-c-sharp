@@ -40,6 +40,10 @@ namespace ConsoleApp1
             Tacka[] nizTacaka = { t1, t2, t3, t4 };
 
             IspisiNiz(nizTacaka);
+
+            Console.WriteLine("Udaljenosti: ");
+            Console.WriteLine(t1.Udaljenost(t2, VrstaUdaljenosti.MENHETN));
+            Console.WriteLine(t1.Udaljenost(t2, VrstaUdaljenosti.DIJAGONALNO));
         }
     }
 }

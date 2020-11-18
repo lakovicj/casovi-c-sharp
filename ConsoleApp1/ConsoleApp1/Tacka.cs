@@ -13,17 +13,17 @@ namespace ConsoleApp1
     class Tacka
     {
         // fields
-        private int x;
-        private int y;
+        private double x;
+        private double y;
 
         // props
-        public int X
+        public double X
         {
             get { return x; }
             set { x = value; }
         }
 
-        public int Y
+        public double Y
         {
             get { return y; }
             set { y = value; }
@@ -46,24 +46,55 @@ namespace ConsoleApp1
             Console.WriteLine("Tacka(x=" +  X + ", y=" + Y + ")");
         }
 
-        private int UdaljenostMenhetn(Tacka t)
+        private double UdaljenostMenhetn(Tacka drugaTacka)
         {
-            return 0;
+            double udaljenost = Math.Abs(this.X - drugaTacka.X) + Math.Abs(this.Y - drugaTacka.Y);
+            return udaljenost;
         }
 
-        private int UdaljenostDijagonalno(Tacka t)
+        private double UdaljenostDijagonalno(Tacka drugaTacka)
         {
-            return 0;
+            double xDeo = (this.X - drugaTacka.X);
+            double yDeo = (this.Y - drugaTacka.Y);
+
+            double xDeoKvadriran = xDeo * xDeo;
+            double yDeoKvadriran = yDeo * yDeo;
+
+            double udaljenost = Math.Sqrt(xDeoKvadriran + yDeoKvadriran);
+
+            //double udalj = Math.Sqrt(Math.Pow((this.X - drugaTacka.X), 2) + Math.Pow((this.Y - drugaTacka.Y), 2);
+            return udaljenost;
         }
 
         public double Udaljenost(Tacka t, VrstaUdaljenosti vrstaUdaljenosti)
         {
-            return 0;
+            double udaljenost = 0;
+
+            if (vrstaUdaljenosti == VrstaUdaljenosti.MENHETN)
+            {
+                udaljenost = UdaljenostMenhetn(t);
+            } else if (vrstaUdaljenosti == VrstaUdaljenosti.DIJAGONALNO)
+            {
+                udaljenost = UdaljenostDijagonalno(t);
+            }
+
+            return udaljenost;
         }
 
         public double UdaljenostOdCentra(VrstaUdaljenosti vrstaUdaljenosti)
         {
-            return 0;
+            Tacka centar = new Tacka(0, 0);
+            double udaljenost = 0;
+
+            if (vrstaUdaljenosti == VrstaUdaljenosti.MENHETN)
+            {
+                udaljenost = UdaljenostMenhetn(centar);
+            } else if (vrstaUdaljenosti == VrstaUdaljenosti.DIJAGONALNO)
+            {
+                udaljenost = UdaljenostDijagonalno(centar);
+            }
+
+            return udaljenost;
         }
     }
 }
