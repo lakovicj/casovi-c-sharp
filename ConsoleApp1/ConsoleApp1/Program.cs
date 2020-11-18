@@ -2,6 +2,12 @@
 
 namespace ConsoleApp1
 {
+    enum Mera
+    {
+        MIN,
+        MAX
+    }
+
     class Program
     {
         public static void IspisiNiz(Tacka[] nizTacaka)
@@ -9,6 +15,46 @@ namespace ConsoleApp1
             foreach (Tacka tacka in nizTacaka)
             {
                 tacka.Ispis();
+            }
+        }
+
+        public static void Nadji(Tacka[] nizTacaka, Mera mera, VrstaUdaljenosti vrstaUdaljenosti)
+        {
+            double minUdaljenost = 0;
+            double maxUdaljenost = 0;
+            Tacka tackaMinUdaljenost = null;
+            Tacka tackaMaxUdaljenost = null;
+            double trenutnaUdaljenost = 0;
+
+            if (mera == Mera.MIN)
+            {
+                foreach (Tacka trenutnaTacka in nizTacaka)
+                {
+                    trenutnaUdaljenost = trenutnaTacka.UdaljenostOdCentra(vrstaUdaljenosti);
+                    if (trenutnaUdaljenost < minUdaljenost)
+                    {
+                        minUdaljenost = trenutnaUdaljenost;
+                        tackaMinUdaljenost = trenutnaTacka;
+                    }
+                }
+
+                Console.WriteLine("Tacka sa minimalnom udaljenoscu je T(" + tackaMinUdaljenost.X + " , " + tackaMinUdaljenost.Y + ")");
+                Console.WriteLine("Minimalna udaljenost za " + vrstaUdaljenosti + " je: " + minUdaljenost);
+
+            } else
+            {
+                foreach (Tacka trenutnaTacka in nizTacaka)
+                {
+                    trenutnaUdaljenost = trenutnaTacka.UdaljenostOdCentra(vrstaUdaljenosti);
+                    if (trenutnaUdaljenost > maxUdaljenost)
+                    {
+                        maxUdaljenost = trenutnaUdaljenost;
+                        tackaMaxUdaljenost = trenutnaTacka;
+                    }
+                }
+
+                Console.WriteLine("Tacka sa maksimalnom udaljenoscu je T(" + tackaMaxUdaljenost.X + " , " + tackaMaxUdaljenost.Y + ")");
+                Console.WriteLine("Maksimalna udaljenost za " + vrstaUdaljenosti + " je" + maxUdaljenost);
             }
         }
 

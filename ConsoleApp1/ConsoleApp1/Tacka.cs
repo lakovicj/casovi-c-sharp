@@ -10,6 +10,7 @@ namespace ConsoleApp1
         MENHETN
     }
 
+
     class Tacka
     {
         // fields
